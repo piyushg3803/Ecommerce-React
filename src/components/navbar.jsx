@@ -4,6 +4,12 @@ import CartContext from "../context/CartContext";
 
 function Navbar() {
 
+  const [btnClicked, setbtnClicked] = useState(false)
+
+  const click = () =>{
+    setbtnClicked((prev) => !prev)
+  }
+
   const {itemNum} = useContext(CartContext)
 
   return (
@@ -40,8 +46,9 @@ function Navbar() {
           {/* Mobile Menu Button */}
           <div className="sm:hidden flex items-center">
             <button
+            onClick={click}
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-blue-700 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-black hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
             >
               <span className="sr-only">Open main menu</span>
               {/* Icon when menu is closed */}
@@ -68,23 +75,23 @@ function Navbar() {
       </div>
 
       {/* Mobile Menu (visible on smaller screens) */}
-      <div className="sm:hidden">
-        <div className="px-2 pt-2 pb-3 space-y-1">
+      <div className={`sm:hidden ${btnClicked ? "block" : "hidden"}`}>
+        <div className="px-2 pt-2 pb-3 space-y-1" >
           <Link
             to=""
-            className="block text-blue-700 hover:bg-blue-100 px-3 py-2 rounded-md text-base font-medium"
+            className="block text-black hover:bg-blue-100 px-3 py-2 rounded-md text-base font-medium"
           >
             Home
           </Link>
           <Link
             to="/about"
-            className="block text-blue-700 hover:bg-blue-100 px-3 py-2 rounded-md text-base font-medium"
+            className="block text-black hover:bg-blue-100 px-3 py-2 rounded-md text-base font-medium"
           >
             About Us
           </Link>
           <Link
             to="/Cart"
-            className="block text-blue-700 hover:bg-blue-100 px-3 py-2 rounded-md text-base font-medium"
+            className="block text-black hover:bg-blue-100 px-3 py-2 rounded-md text-base font-medium"
           >
             <i className="fa-solid fa-cart-shopping"></i>
           </Link>
